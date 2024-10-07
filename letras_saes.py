@@ -67,13 +67,13 @@ def exibir_letra(data: dict) -> None:
         for musica in data['mus']:
             idioma = 1
             apaga_tela()
-            traducao = musica.get('translate', False)
-            if traducao:
+            traducoes = musica.get('translate', False)
+            if traducoes:
                 idioma = define_idioma(musica)
                 apaga_tela()
                 if idioma > 1 and idioma <= 9:
-                    traducao = musica['translate']
-                    letra = traducao[idioma-2]['text']
+                    traducoes = musica['translate']
+                    letra = traducoes[idioma-2]['text']
                     print(f"""\n=== {musica['name']} ===\n\n{letra}""")
                 else:
                     letra = musica['text']
@@ -85,7 +85,7 @@ def exibir_letra(data: dict) -> None:
         print("Letra não encontrada.")
         
         
-def define_idioma(musica:dict) -> None:
+def define_idioma(musica:dict) -> int:
     dicionario_idiomas = {
         1 : "Português Brasil",
         2 : "Inglês",
